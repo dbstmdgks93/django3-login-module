@@ -10,8 +10,6 @@ from django.contrib.auth import login, logout, authenticate
 def home(request):
     return render(request, 'mainpage/home.html')
 
-# def signup(request):
-#     return render(request, 'mainpage/signup.html',{'form':SignUpForm()})
 
 def signup(request):
     if request.method =='GET':

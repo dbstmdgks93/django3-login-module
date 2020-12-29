@@ -1,0 +1,20 @@
+{% if user.is_authenticated %}
+
+Logged In as {{user.username}}
+
+<form action="{% url 'logoutuser' %}" method="POST">
+{% csrf_token %}
+<button type="submit">Logout</button>
+</form>
+
+<a href="{% url 'SearchOriginal' %}">SearchOriginal</a><br>
+{% block content %}{% endblock %}
+
+{% else %}
+
+검색시스템은 로그인 후에 사용할 수 있습니다.<br>
+<a href="{% url 'home' %}">return to homepage</a> <br>
+<a href="{% url 'signup' %}">Sign Up</a> <br>
+<a href="{% url 'loginuser' %}">Login</a> <br>
+
+{% endif %}
