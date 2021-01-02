@@ -28,7 +28,13 @@ class SignUpForm(forms.ModelForm):
     address = forms.CharField(label='주소',max_length=100)
     email = forms.EmailField(label='이메일',widget=EmailInput)
     phone = forms.CharField(label='연락처',max_length=20)
-    finalEducation = forms.CharField(label='최종학력',max_length=15)
+    finalEducation = forms.ChoiceField(label='성별',\
+        choices=(('초등학교 졸업','초등학교 졸업'),\
+                ('중학교 졸업','중학교 졸업'),\
+                ('고등학교 졸업','고등학교 졸업'),\
+                ('대학교 졸업','대학교 졸업'),\
+                ('대학원 이상','대학원 이상'))\
+                )
     major = forms.CharField(label='전공 및 관심분야',max_length=100)
 
     class Meta:
