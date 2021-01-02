@@ -22,7 +22,14 @@ def signup(request):
                     password=request.POST['password1'],\
                     name=request.POST['name'],\
                     birth=request.POST['birth'],\
-                    gender=request.POST['gender'])
+                    gender=request.POST['gender'],\
+                    belong=request.POST['belong'],\
+                    position=request.POST['position'],\
+                    address=request.POST['address'],\
+                    email=request.POST['email'],\
+                    phone=request.POST['phone'],\
+                    finalEducation=request.POST['finalEducation'],\
+                    major=request.POST['major'])
                 user.save()
                 return redirect('home')
             except IntegrityError:

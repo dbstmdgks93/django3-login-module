@@ -2,3 +2,4 @@
 2020.12.29 13:06:51 INFO  time: initialize in 1.23s
 2020.12.29 13:06:53 WARN  Build server is not auto-connectable.
 2020.12.29 13:06:53 WARN  no build tool detected in workspace 'C:\Users\YoonSeungHan\Desktop\django\django3-login-module'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.29 16:43:34 INFO  shutting down Metals
