@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib import auth
 
 class CustomUserManager(BaseUserManager):
     def create_user(self,username,\
@@ -21,10 +22,8 @@ class CustomUserManager(BaseUserManager):
             finalEducation = finalEducation,
             major = major
             )
-        user.is_admin = False
         user.is_staff = False
         user.is_superuser = False
-        user.is_active = True
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -51,6 +50,10 @@ class CustomUserManager(BaseUserManager):
         user.is_admin = True
         user.is_superuser = True
         user.is_staff = True
+        user.has_perm('mainpage.add_CustomUser')
+        user.has_perm('mainpage.change_CustomUser')
+        user.has_perm('mainpage.delete_CustomUser')
+        user.has_perm('mainpage.view_CustomUser')
         user.save(using=self._db)
         return user
     
@@ -78,7 +81,6 @@ class CustomUser(AbstractBaseUser):
     USERNAME_FIELD = 'username'
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
     def __str__(self):
@@ -87,12 +89,18 @@ class CustomUser(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
-        return True
+        if self.is_superuser == True:
+            return True
+        else:
+            return False
 
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
-        return True
+        if self.is_superuser == True:
+            return True
+        else:
+            return False
     
     def is_staff(self):
         return self.is_superuser
