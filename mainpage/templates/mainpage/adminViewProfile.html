@@ -1,0 +1,26 @@
+{% extends 'mainpage/base.html' %}
+
+{% block content %}
+
+<h1>adminViewProfile</h1>
+
+{% for user in users%}
+
+<h2>username : {{user.username}}</h2>
+name : {{user.name}}
+birth : {{user.birth}}
+gender : {{user.gender}}
+belong : {{user.belong}}
+position : {{user.position}}
+address : {{user.address}}
+email : {{user.email}}
+phone : {{user.phone}}
+finalEducaton : {{ user.get_finalEducation_display }}
+major : {{user.major}}
+is_active : {{user.is_active}}
+is_superuser : {{user.is_superuser}}
+
+{% endfor %}
+
+{% endblock %}
+

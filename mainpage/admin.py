@@ -9,24 +9,24 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = SignUpForm
 
-    list_display = ('name','is_superuser')
-    list_filter = ('is_superuser',)
+    list_display = ('username','is_active','is_superuser')
+    list_filter = ('is_active',)
     fieldsets = (
         ('Account info', {'fields': ('username','password')}),
-        ('Personal info', {'fields': ('name','birth','gender')}),
-        ('Permissions', {'fields': ('is_active','is_staff','is_admin','is_superuser')}),
+        ('Personal info', {'fields': ('name','birth','gender','belong','position','address','email','phone','finalEducation','major')}),
+        ('Permissions', {'fields': ('is_active','is_superuser')}),
     )
-    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
-    # overrides get_fieldsets to use this attribute when creating a user.
+    # # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
+    # # overrides get_fieldsets to use this attribute when creating a user.
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
             'fields': ('username','name', 'birth','gender', 'password1', 'password2'),
         }),
     )
-    search_fields = ('name',)
-    ordering = ('name',)
+    search_fields = ('name','username')
+    ordering = ('is_active',)
     filter_horizontal = ()
 
-admin.site.register(CustomUser)
+admin.site.register(CustomUser,UserAdmin)
 admin.site.unregister(Group)

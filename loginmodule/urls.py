@@ -26,5 +26,6 @@ urlpatterns = [
     path('logout/',views.logoutuser,name='logoutuser'),
     path('SearchOriginal/',include('SearchOriginal.urls')),
     path('viewProfile/',views.viewProfile,name='viewProfile'),
+    path('adminViewProfile/',views.adminViewProfile,name='adminViewProfile')
 ]
 

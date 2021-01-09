@@ -58,3 +58,12 @@ def logoutuser(request):
 @login_required
 def viewProfile(request):
     return render(request, 'mainpage/viewProfile.html')
+
+@login_required
+def adminViewProfile(request):
+    if request.user.is_superuser == False:
+        return redirect('viewProfile')
+    
+    else:
+        users = CustomUser.objects.filter(is_superuser=False)
+        return render(request, 'mainpage/adminViewProfile.html', {'users':users})

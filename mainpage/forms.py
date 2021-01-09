@@ -29,7 +29,7 @@ class SignUpForm(forms.ModelForm):
     address = forms.CharField(label='주소',max_length=100)
     email = forms.EmailField(label='이메일',widget=EmailInput)
     phone = forms.CharField(label='연락처',max_length=20)
-    finalEducation = forms.ChoiceField(label='성별',choices=finalEducationChoices)
+    finalEducation = forms.ChoiceField(label='최종학력',choices=finalEducationChoices)
     major = forms.CharField(label='전공 및 관심분야',max_length=100)
 
     class Meta:
