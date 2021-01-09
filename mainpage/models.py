@@ -62,6 +62,15 @@ class CustomUserManager(BaseUserManager):
 
 # Create your models here.
 
+finalEducationChoices = [
+    ('초등학교 졸업','초등학교 졸업'),
+    ('중학교 졸업','중학교 졸업'),
+    ('고등학교 졸업','고등학교 졸업'),
+    ('대학교 졸업','대학교 졸업'),
+    ('석사 졸업','석사 졸업'),
+    ('박사 졸업','박사 졸업'),
+]
+
 class CustomUser(AbstractBaseUser):
 
     objects = CustomUserManager()
@@ -75,7 +84,7 @@ class CustomUser(AbstractBaseUser):
     address = models.CharField(max_length=100, default="", null=True)
     email = models.EmailField(max_length=254, default="", null=True)
     phone = models.CharField(max_length=20,default="", null=True)
-    finalEducation = models.CharField(max_length=15,default="", null=True)
+    finalEducation = models.CharField(max_length=15,choices=finalEducationChoices,default="", null=True)
     major = models.CharField(max_length=100, default="", null=True)
 
     USERNAME_FIELD = 'username'

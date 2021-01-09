@@ -1,0 +1,22 @@
+{% extends 'mainpage/base.html' %}
+
+{% block content %}
+
+<h1>viewProfile</h1>
+
+username : {{user.username}}<br>
+name : {{user.name}}<br>
+birth : {{user.birth}}<br>
+gender : {{user.gender}}<br>
+belong : {{user.belong}}<br>
+position : {{user.position}}<br>
+address : {{user.address}}<br>
+email : {{user.email}}<br>
+phone : {{user.phone}}<br>
+finalEducaton : {{ user.get_finalEducation_display }}<br>
+major : {{user.major}}<br>
+is_active : {{user.is_active}}<br>
+is_superuser : {{user.is_superuser}}<br>
+
+{% endblock %}
+

@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from .forms import SignUpForm
 from .models import CustomUser
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -53,3 +54,7 @@ def logoutuser(request):
     if request.method=='POST':
         logout(request)
         return redirect('home')
+
+@login_required
+def viewProfile(request):
+    return render(request, 'mainpage/viewProfile.html')

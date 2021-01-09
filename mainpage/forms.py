@@ -6,6 +6,7 @@ from .models import CustomUser
 from django.db import IntegrityError
 from django.core.exceptions import ValidationError
 from django.forms import widgets
+from .models import finalEducationChoices
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -28,13 +29,7 @@ class SignUpForm(forms.ModelForm):
     address = forms.CharField(label='주소',max_length=100)
     email = forms.EmailField(label='이메일',widget=EmailInput)
     phone = forms.CharField(label='연락처',max_length=20)
-    finalEducation = forms.ChoiceField(label='성별',\
-        choices=(('초등학교 졸업','초등학교 졸업'),\
-                ('중학교 졸업','중학교 졸업'),\
-                ('고등학교 졸업','고등학교 졸업'),\
-                ('대학교 졸업','대학교 졸업'),\
-                ('대학원 이상','대학원 이상'))\
-                )
+    finalEducation = forms.ChoiceField(label='성별',choices=finalEducationChoices)
     major = forms.CharField(label='전공 및 관심분야',max_length=100)
 
     class Meta:
