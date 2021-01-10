@@ -25,10 +25,11 @@ class UserAdmin(admin.ModelAdmin):
     #         'fields': ('username','name', 'birth','gender', 'password1', 'password2'),
     #     }),
     # )
-    search_fields = ('name','username')
+    search_fields = ('name','username','belong','position')
     ordering = ('is_active',)
     filter_horizontal = ()
 
-admin.site.site_header = 'Korean Corpus Admin Dashboard'
+admin.site.CSS = "/templates/admin/admin_base.css"
+admin.site.site_header = 'Korean Corpus Admin Page'
 admin.site.register(CustomUser,UserAdmin)
 admin.site.unregister(Group)
