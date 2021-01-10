@@ -53,14 +53,20 @@ class SignUpForm(forms.ModelForm):
         return user
 
 class UserChangeForm(forms.ModelForm):
-    password = ReadOnlyPasswordHashField()
+    # password = ReadOnlyPasswordHashField()
 
     class Meta:
         model = CustomUser
-        fields = ('name','password','birth','gender','is_active','is_superuser')
+        fields = ('name','password','birth','gender','belong','position','address','email','phone','finalEducation',
+        'major','is_active','is_superuser')
     
     def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
-        return self.initial["password"]
+        password = self.cleaned_data.get("password")
+        return password
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user

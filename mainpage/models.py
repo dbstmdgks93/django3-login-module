@@ -78,7 +78,7 @@ class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=40, unique=True)
     name = models.CharField(max_length=20, default="", null=True)
     birth = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=20, default="", null=True)
+    gender = models.CharField(max_length=20,choices=[('남성','남성'),('여성','여성')], default="", null=True)
     belong = models.CharField(max_length=30, default="", null=True)
     position = models.CharField(max_length=20, default="", null=True)
     address = models.CharField(max_length=100, default="", null=True)
